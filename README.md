@@ -1,4 +1,4 @@
 # GitOps Microservice Example
 
-## This is the frontend for doodle
+## This is the world for doodle
 

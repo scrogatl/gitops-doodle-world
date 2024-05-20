@@ -3,45 +3,39 @@ kind: Deployment
 metadata:
   labels:
     application: helloworld
-    service: frontend
+    service: world
     version: blue
     shard: blue
-  name: frontend
+  name: world
   namespace: supreme-doodle
 spec:
   replicas: 1
   selector:
     matchLabels:
       application: helloworld
-      service: frontend
+      service: world
       version: blue
       shard: blue
   template:
     metadata:
       labels:
         application: helloworld
-        service: frontend
+        service: world
         version: blue
         shard: blue
     spec:
       containers:
-      - name: frontend
-        # image: public.ecr.aws/z4m0n1r4/frontend
-        image: ghcr.io/scrogatl/doodle-frontend:latest
+      - name: world
+        # image: public.ecr.aws/z4m0n1r4/world
+        image: ghcr.io/scrogatl/doodle-world:latest
         imagePullPolicy: Always
         env:
-        - name: HELLO_HOST
-          value: "hello"
-          # value: "hello.demo.internal"
-        - name: WORLD_HOST
-          value: "world"
-          # value: "world.demo.internal"
         - name: SHARD
           value: "blue"
         - name: PYTHONUNBUFFERED
           value: "1"
         ports:
-        - containerPort: 5000
+        - containerPort: 5002
           name: application
           protocol: TCP
       # imagePullSecrets:
@@ -50,15 +44,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: world
   namespace: supreme-doodle
 spec: 
   selector:
     application: helloworld
-    service: frontend  
+    service: world  
   type: ClusterIP
   ports:
   - name: http
     # protocol: TCP
     appProtocol: http
-    port: 5000
+    port: 5002

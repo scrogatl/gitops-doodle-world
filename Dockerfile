@@ -8,12 +8,12 @@ RUN apt autoremove
 
 FROM base
 
-WORKDIR /frontend
+WORKDIR /world
 
-COPY frontend/requirements.txt /frontend/requirements.txt
+COPY world/requirements.txt /world/requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY frontend/src/ /frontend
+COPY world/src/ /world
 
-EXPOSE 5000
-CMD flask run --host=0.0.0.0 -p 5000
+EXPOSE 5002
+CMD flask run --host=0.0.0.0 -p 5002
