@@ -7,7 +7,7 @@ on:
    branches: [ "main" ]
 
 jobs:
-  build-push-loadgen:
+  build-push-world:
     runs-on: ubuntu-latest
     steps:
       
