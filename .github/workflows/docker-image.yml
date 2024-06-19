@@ -22,7 +22,7 @@ jobs:
           username: scrogatl
           password: ${{secrets.GITHUB_TOKEN}}      
 
-      - name: 'Build Inventory Image'
+      - name: 'Build World Image'
         run: |
-          docker build . --tag ghcr.io/scrogatl/doodle-world:latest
+          docker build . --tag ghcr.io/scrogatl/doodle-world:latest gitops-doodle-frontend/.github/workflows/docker-image.yml
           docker push ghcr.io/scrogatl/doodle-world:latest

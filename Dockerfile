@@ -16,4 +16,9 @@ RUN pip3 install -r requirements.txt
 COPY world/src/ /world
 
 EXPOSE 5002
+
+ARG nr_key
+ENV NEW_RELIC_LICENSE_KEY=$nr_key
+ENV NEW_RELIC_APP_NAME=doodle
+
 CMD flask run --host=0.0.0.0 -p 5002
