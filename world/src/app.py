@@ -11,6 +11,7 @@ log.setLevel(logging.DEBUG)
 app = Flask(__name__)
 
 shard = os.environ.get('SHARD', "SHARD_NOT_SET")
+ecs_cmd = os.environ.get("ECS_CONTAINER_METADATA_URI_V4", "NOT_SET")
 
 def logit(message):
     timeString = datetime.now().strftime("%H:%M:%S.%f")[:-3]
@@ -22,4 +23,4 @@ def logit(message):
 def hello_world():
     print("SHARD: " + shard )
     logit("SHARD: " + shard )
-    return "World (" + shard + ")" 
+    return "World (" + shard + "), ECS_CONTAINER_METADATA_URI_V4: " + ecs_cmd
