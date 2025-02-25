@@ -30,14 +30,21 @@ def logit(message):
 
 @app.route("/")
 def world():
+    # Setup RabbitMQ
     connection = pika.BlockingConnection(
     pika.ConnectionParameters(host=rmq_host))
     channel = connection.channel()
     channel.queue_declare(queue=queue_name)
+    
+    # Get dt headers from New Relic
     log_message = {"message": "Hello World"}
     context = newrelic.agent.get_linking_metadata()
+    
+    # Tell someone about it
     log_message.update(context)
     logit(str(log_message))
-    channel.basic_publish(exchange='', routing_key='hello', body=str(log_message))
-    logit("SHARD: " + shard )
+    
+    # Publish to RabbitMQ
+    channel.basic_publish(exchange='', routing_key=queue_name, body=str(log_message))
+    
     return "World (" + shard + "), ECS_CONTAINER_METADATA_URI_V4: " + ecs_cmd
