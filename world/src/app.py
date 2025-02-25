@@ -37,7 +37,7 @@ def world():
     channel.queue_declare(queue=queue_name)
     
     # Get dt headers from New Relic
-    log_message = {"message": "Hello World"}
+    log_message = {"message": "sent from doodle-world"}
     context = newrelic.agent.get_linking_metadata()
     
     # Tell someone about it
