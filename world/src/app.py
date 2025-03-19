@@ -1,12 +1,12 @@
 from flask import Flask
 from flask import request
 from datetime import datetime
-import pika
+# import pika
 
 import os
 import logging
 
-import newrelic.agent
+# import newrelic.agent
 
 # Initialize the New Relic agent
 # Make sure to call this at the start of your application
@@ -31,20 +31,20 @@ def logit(message):
 @app.route("/")
 def world():
     # Setup RabbitMQ
-    connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host=rmq_host))
-    channel = connection.channel()
-    channel.queue_declare(queue=queue_name)
+    # connection = pika.BlockingConnection(
+    # pika.ConnectionParameters(host=rmq_host))
+    # channel = connection.channel()
+    # channel.queue_declare(queue=queue_name)
     
-    # Get dt headers from New Relic
-    log_message = {"message": "sent from doodle-world"}
-    context = newrelic.agent.get_linking_metadata()
+    # # Get dt headers from New Relic
+    # log_message = {"message": "sent from doodle-world"}
+    # context = newrelic.agent.get_linking_metadata()
     
-    # Tell someone about it
-    log_message.update(context)
-    logit(str(log_message))
+    # # Tell someone about it
+    # log_message.update(context)
+    # logit(str(log_message))
     
     # Publish to RabbitMQ
-    channel.basic_publish(exchange='', routing_key=queue_name, body=str(log_message))
+    # channel.basic_publish(exchange='', routing_key=queue_name, body=str(log_message))
     
     return "World (" + shard + "), ECS_CONTAINER_METADATA_URI_V4: " + ecs_cmd
