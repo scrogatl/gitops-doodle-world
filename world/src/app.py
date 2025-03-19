@@ -10,7 +10,7 @@ import logging
 
 # Initialize the New Relic agent
 # Make sure to call this at the start of your application
-newrelic.agent.initialize()
+#newrelic.agent.initialize()
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.INFO)
