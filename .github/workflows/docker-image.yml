@@ -2,13 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main", "new_relic"]
-    tags: 
-      - '*'
-
-  # workflow_dispatch:
-  #  branches: [ "main" ]
-
+    branches: [ "main", "newrelic"]
 
 jobs:
   build-push-world:

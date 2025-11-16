@@ -21,7 +21,4 @@ EXPOSE 5002
 
 ENV NEW_RELIC_APP_NAME=doodle-world
 
-CMD flask run --host=0.0.0.0 -p 5002
-#CMD newrelic-admin run-program flask run --host=0.0.0.0 -p 5002
-#CMD opentelemetry-instrument --logs_exporter otlp flask run --debugger --host=0.0.0.0 -p 5002
-
+CMD ["newrelic-admin", "run-program", "flask", "run", "--host=0.0.0.0", " -p 5002"]
