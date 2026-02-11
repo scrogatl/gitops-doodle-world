@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main", "new_relic"]
-    tags: 
-      - '*'
+    #branches: [ "main", "new_relic"]
+    #tags: 
+    #  - '*'
 
   # workflow_dispatch:
   #  branches: [ "main" ]
