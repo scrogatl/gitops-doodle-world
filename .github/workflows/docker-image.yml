@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@
+        uses: docker/metadata-action@main
         with:
           # list of Docker images to use as base name for tags
           images: |
@@ -30,14 +30,14 @@ jobs:
         uses: actions/checkout@main
     
       - name: 'Login to GitHub Container Registry'
-        uses: docker/login-action@
+        uses: docker/login-action@main
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{secrets.GITHUB_TOKEN}}      
 
       - name: Build and push
-        uses: docker/build-push-action@
+        uses: docker/build-push-action@main
         with:
           context: .
           file: ./Dockerfile
