@@ -9,11 +9,6 @@ from prometheus_client import make_wsgi_app
 import os
 import logging
 
-# import newrelic.agent
-
-# Initialize the New Relic agent
-# Make sure to call this at the start of your application
-#newrelic.agent.initialize()
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.INFO)
