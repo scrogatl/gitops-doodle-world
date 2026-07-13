@@ -11,7 +11,7 @@ import logging
 
 
 log = logging.getLogger('werkzeug')
-log.setLevel(logging.INFO)
+log.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -61,6 +61,6 @@ def world():
     # Publish to RabbitMQ
     # channel.basic_publish(exchange='', routing_key=queue_name, body=str(log_message))
     
-
     REQUESTS_COUNT.inc()  # Increment the counter on each request
+    logit("Number of requests to world: " + str(REQUESTS_COUNT._value.get()))
     return "World (" + shard + "), ECS_CONTAINER_METADATA_URI_V4: " + ecs_cmd
