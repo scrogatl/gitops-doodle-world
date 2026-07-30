@@ -1,0 +1,2 @@
+-r ../world/requirements.txt
+azure-functions
