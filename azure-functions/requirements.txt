@@ -1,2 +1,6 @@
--r ../world/requirements.txt
+# Kept in sync manually with ../world/requirements.txt - can't use `-r
+# ../world/requirements.txt` here because Azure's remote build only
+# packages this directory, not sibling repo folders.
+flask
+prometheus_client
 azure-functions
