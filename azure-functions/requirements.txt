@@ -4,3 +4,4 @@
 flask
 prometheus_client
 azure-functions
+newrelic
