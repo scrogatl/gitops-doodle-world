@@ -9,13 +9,14 @@ from prometheus_client import make_wsgi_app
 import os
 import logging
 
-# import newrelic.agent
+# Instrumentation (New Relic / OpenTelemetry) is NOT done here: it is added by
+# the Docker build target and the launch command (see Dockerfile). This file is
+# the same for every flavor.
 
-# Initialize the New Relic agent
-# Make sure to call this at the start of your application
-#newrelic.agent.initialize()
-
-log = logging.getLogger('werkzeug')
+# Log at INFO so records are picked up by New Relic log forwarding (default
+# forwarding level is INFO) and by the OpenTelemetry logging handler.
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger('world')
 log.setLevel(logging.INFO)
 
 app = Flask(__name__)
@@ -68,4 +69,5 @@ def world():
     
 
     REQUESTS_COUNT.inc()  # Increment the counter on each request
+    logit("Number of requests to world: " + str(REQUESTS_COUNT._value.get()))
     return "World (" + shard + "), ECS_CONTAINER_METADATA_URI_V4: " + ecs_cmd
